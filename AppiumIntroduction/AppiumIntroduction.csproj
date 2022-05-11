@@ -19,5 +19,9 @@
     <None Remove="Appium.WebDriver" />
     <None Remove="Selenium.WebDriver" />
     <None Remove="Selenium.Support" />
+    <None Remove="App\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App\" />
   </ItemGroup>
 </Project>
