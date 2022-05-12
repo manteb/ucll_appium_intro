@@ -27,9 +27,9 @@ namespace AppiumTraining
         [Test]
         public void Login()
         {
-            //Find element username
-            //Find element password
-            //Find element login button
+            //TODO Find element username
+            //TODO Find element password
+            //TODO Find element login button
         }
 
         [TearDown]
