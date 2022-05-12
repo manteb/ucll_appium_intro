@@ -20,7 +20,7 @@ namespace AppiumTraining
         {
             var options = new AppiumOptions();
             options.PlatformName = "Android";
-            options.AddAdditionalCapability(MobileCapabilityType.App, "PathToAPK");
+            options.AddAdditionalCapability(MobileCapabilityType.App, "/Users/mante.bos/Documents/ExperiBank.apk");
             driver = new AndroidDriver<AndroidElement>(new Uri(appiumUri), options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
@@ -39,16 +39,22 @@ namespace AppiumTraining
             driver.FindElementById("countryButton").Click();
 
 
-            //TODO search for a country on the bottom of the list -> Swipe needed
-            var countries = driver.FindElementsByClassName("android.widget.TextView");
-            foreach (var country in countries)
+            var found = false;
+            do
             {
-                if (country.Text.Equals("India"))
+                var countries = driver.FindElementsByClassName("android.widget.TextView");
+                foreach (var country in countries)
                 {
-                    country.Click();
-                    break;
+                    if (country.Text.Equals("Spain"))
+                    {
+                        country.Click();
+                        found = true;
+                        break;
+                    }
+
                 }
-            }
+                if (!found) { Swipe(); }
+            } while (!found);
 
 
             driver.FindElementById("sendPaymentButton").Click();
@@ -62,6 +68,19 @@ namespace AppiumTraining
         public void TearDown()
         {
             driver.Quit();
+        }
+
+        private void Swipe()
+        {
+            Size size = driver.Manage().Window.Size;
+            int startX = (int)(size.Width * 0.8);
+            int startY = (int)(size.Height * 0.8);
+            int endY = (int)(size.Height * 0.2);
+            new TouchAction(driver)
+                .LongPress(startX, startY)
+                .MoveTo(startX, endY)
+                .Release().Wait(5000).Perform();
+
         }
 
         private float GetBalance()
