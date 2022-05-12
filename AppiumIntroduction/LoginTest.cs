@@ -27,9 +27,9 @@ namespace AppiumTraining
         [Test]
         public void Login()
         {
-            //Find element username
-            //Find element password
-            //Find element login button
+            driver.FindElementById("usernameTextField"); //TODO fill in username
+            driver.FindElementById("passwordTextField"); //TODO fill in password
+            driver.FindElementById("loginButton"); //TODO click the button
         }
 
         [TearDown]
