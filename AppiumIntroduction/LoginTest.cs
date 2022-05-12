@@ -7,12 +7,19 @@ namespace AppiumIntroduction
         [SetUp]
         public void Setup()
         {
+            //TODO open connection to device and open app
         }
 
         [Test]
-        public void Test1()
+        public void Login()
         {
-            Assert.Pass();
+            //wait till next exercise
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            //TODO close app and connection
         }
     }
 }
